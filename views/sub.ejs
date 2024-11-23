@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
+    />
+    <link href="/css/style.css" rel="stylesheet" />
+    <title>Sub posts</title>
+  </head>
+  <body>
+    <main>
+      <div class="authOptions">
+        <h1>Sub Posts</h1>
+        <a role="button" href="/posts">Home</a>
+      </div>
+      <div>
+      <% posts.forEach((post)=>{%>
+        <div class="articleCard">
+          <a href="/posts/show/<%= post.id %>">
+          <h3>
+            <%= post.title %>
+          </h3>
+          <p> <%= post.description %></p>
+          <p><a href="<%= post.link %>"><%= post.link %></a></p>
+          </a>
+        </div>
+
+        <% });%>
+      </div>
+    </main>
+  </body>
+</html>

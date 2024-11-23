@@ -1,0 +1,10 @@
+.authOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.articleCard{
+  background-color: #23262e;
+  padding: 8px;
+  border-radius: 4px;
+}
