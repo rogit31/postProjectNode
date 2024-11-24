@@ -29,6 +29,30 @@
             day: "numeric",
             year: "numeric"
           }) %></p>
+        <p>Posted by: <%= post.creator.uname %> </p>
+        <div>
+          <% if(authenticated){%>
+          <form action="/posts/comment-create/<%= post.id %>" method="post">
+            <label for="commentContent">Comment:</label>
+            <input name="commentContent" id="commentContent" type="text">
+            <button type="submit">Submit</button>
+          </form>
+          <% }%>
+        </div>
+        <% post.comments.forEach((comment) => { %>
+        <div class="commentWrapper">
+          <p><%= comment.description %></p>
+          <div class="commentMetadataWrapper">
+            <p><%= new Date(comment.timestamp).toLocaleString("en-us", {
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+              })%></p>
+            <p><%= comment.creator.uname %></p>
+          </div>
+        </div>
+
+         <% }) %>
       </div>
     </main>
   </body>

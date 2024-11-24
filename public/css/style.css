@@ -8,3 +8,12 @@
   padding: 8px;
   border-radius: 4px;
 }
+.commentWrapper{
+ border: 1px solid #979797;
+  padding: 8px;
+}
+.commentMetadataWrapper{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px 0 12px;
+}

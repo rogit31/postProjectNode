@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 import { ensureAuthenticated } from "../middleware/checkAuth";
-import {getPost, getPosts} from "../fake-db";
+import {addComment, getPost, getPosts} from "../fake-db";
 import {getUserById, getUsernameById} from "../controller/userController";
 
 router.get("/", async (req, res) => {
@@ -27,7 +27,8 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
 
 router.get("/show/:postid", async (req, res) => {
   const post = getPost(Number(req.params.postid))
-  res.render("individualPost", {post});
+  const authenticated = req.isAuthenticated();
+  res.render("individualPost", {post, authenticated});
 });
 
 router.get("/edit/:postid", ensureAuthenticated, async (req, res) => {

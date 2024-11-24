@@ -115,6 +115,7 @@ function getPost(id: number) {
   return decoratePost(posts[id]);
 }
 
+
 function addPost(
   title: string,
   link: string,
