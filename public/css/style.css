@@ -12,8 +12,31 @@
  border: 1px solid #979797;
   padding: 8px;
 }
+.individualPost{
+  border: 1px solid white;
+}
 .commentMetadataWrapper{
   display: flex;
   justify-content: space-between;
   padding: 0 12px 0 12px;
+}
+.voteButton{
+  width: 80px;
+  text-align: center;
+}
+.voteContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.voteButtonWrapper{
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+.votedUp{
+  background-color: green;
+}
+.votedDown{
+  background-color: red;
 }

@@ -182,7 +182,26 @@ function addComment(post_id: number, creator: number, description: string) {
   return comment;
 }
 
+function vote(post_id: number, user_id: number, value:number){
+  //We have to check if a vote by that user on that post already exists, which is pretty bad because that means we need to iterate over the array
+  //in reality I'm fairly confident that these votes in a db should have a unique pk, and reference user and post pks with a fk
+  //this would make it way faster and easier to handle voting, since we would be able to target the exact vote on the db with the user and post id on top of ACID compliance
+  let foundFlag = false;
+  votes.forEach((vote) => {
+    //case where it's the same user & same vote, we re-assign the value to the old one
+    if(vote.post_id === post_id && vote.user_id === user_id){
+      vote.value = value;
+      foundFlag = true;
+    }
+  })
+  if(!foundFlag){
+    votes.push({user_id, post_id, value});
+  }
+}
+
 export {
+  vote,
+  getVotesForPost,
   debug,
   getUser,
   getUserByUsername,

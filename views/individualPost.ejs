@@ -30,8 +30,34 @@
             year: "numeric"
           }) %></p>
         <p>Posted by: <%= post.creator.uname %> </p>
+        <div class="voteContainer">
+          <p><%= score %></p>
+          <div class="voteButtonWrapper">
+            <%# this is so unreadable I'm sorry%>
+            <% if ( user && user.id) {%>
+            <form action="/posts/vote/<%=post.id%>" method="post">
+              <button class="voteButton <% if(voted && voted === 1) {
+              %>
+              votedUp
+              <%
+              }%>">+</button>
+              <input type="hidden" name="value" id="value" value="<% if (voted && voted === 1 ){%>
+            0            <% } else{ %>
+            +1 <% } %>">
+              <input type="hidden" name="userID" id="userID" value="<%= user.id %>">
+              <input type="hidden" name="postID" id="postID" value="<%= post.id %>">
+            </form>
+            <form action="/posts/vote/<%=post.id%>" method="post">
+              <button class="voteButton <% if(voted && voted === -1){ %>votedDown<% } %>">-</button>
+              <input type="hidden" name="value" id="value" value="<% if(voted && voted === -1){ %> 0 <% } else {  %>-1 <% } %>">
+              <input type="hidden" name="userID" id="userID" value="<%= user.id %>">
+              <input type="hidden" name="postID" id="postID" value="<%= post.id %>">
+            </form>
+            <% } %>
+          </div>
+        </div>
         <div>
-          <% if(user.id && user.id === post.creator.id) {%>
+          <% if(user && user.id && user.id === post.creator.id) {%>
             <a href="/posts/edit/<%= post.id %>"><button>Edit</button></a>
             <a href="/posts/deleteconfirm/<%= post.id %>"><button>Delete</button></a>
           <% }%>

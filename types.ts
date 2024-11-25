@@ -8,6 +8,8 @@ export type TPosts = {
     subgroup: string;
     timestamp: number;
     creatorUsername?: string | null;
+    score?: number;
+    voted?: number;
   };
 };
 
