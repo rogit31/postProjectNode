@@ -31,6 +31,12 @@
           }) %></p>
         <p>Posted by: <%= post.creator.uname %> </p>
         <div>
+          <% if(user.id && user.id === post.creator.id) {%>
+            <a href="/posts/edit/<%= post.id %>"><button>Edit</button></a>
+            <a href="/posts/deleteconfirm/<%= post.id %>"><button>Delete</button></a>
+          <% }%>
+        </div>
+        <div>
           <% if(authenticated){%>
           <form action="/posts/comment-create/<%= post.id %>" method="post">
             <label for="commentContent">Comment:</label>

@@ -17,7 +17,17 @@
         <h1>Create Post</h1>
         <a role="button" href="/posts">Home</a>
       </div>
-      <p>Implement this yourself. It comes from createPost.ejs</p>
+      <form action="/posts/create" method="post">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title">
+        <label for="link">Link</label>
+        <input type="text" name="link" id="link">
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description"  >
+        <label for="subgroup">Subgroup</label>
+        <input type="text" name="subgroup" id="subgroup">
+        <button type="submit">Submit</button>
+      </form>
     </main>
   </body>
 </html>

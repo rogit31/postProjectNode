@@ -4,14 +4,23 @@ import {
   getUserByEmailIdAndPassword,
   getUserById,
 } from "../controller/userController";
+import {TUsers} from "../types";
 
 // ⭐ TODO: Passport Types
+declare global {
+    namespace Express{
+        interface User{
+            id: number
+        }
+    }
+}
+
 const localLogin = new LocalStrategy(
   {
     usernameField: "uname",
     passwordField: "password",
   },
-  async (uname: any, password: any, done: any) => {
+  async (uname: string, password: string, done: any) => {
     // Check if user exists in databse
     const user = await getUserByEmailIdAndPassword(uname, password);
     return user
@@ -23,18 +32,18 @@ const localLogin = new LocalStrategy(
 );
 
 // ⭐ TODO: Passport Types
-passport.serializeUser(function (user: any, done: any) {
+passport.serializeUser(function (user: Express.User, done: any) {
   done(null, user.id);
 });
 
 // ⭐ TODO: Passport Types
-passport.deserializeUser(function (id: any, done: any) {
-  const user = getUserById(id);
-  if (user) {
-    done(null, user);
-  } else {
-    done({ message: "User not found" }, null);
-  }
+passport.deserializeUser(async function (id: number, done: any) {
+    const user = await getUserById(id);
+    if (user) {
+        done(null, user);
+    } else {
+        done({message: "User not found"}, null);
+    }
 });
 
 export default passport.use(localLogin);
